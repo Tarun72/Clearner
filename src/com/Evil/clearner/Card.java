@@ -7,19 +7,17 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.clearner.utills.FlipAnimation;
-import com.database.clearner.KeyDatabase;
 import com.database.clearner.KeyWordDatabase;
 
 public class Card extends ActionBarActivity {
 	private int width_screen, height_Screen;
 	private ImageView Card_img;
 	private KeyWordDatabase db;
-	private String topic, content, j, k;
+	private String  j, k;
 	private ArrayList<String> Data;
 	
 	@Override
@@ -77,9 +75,9 @@ public class Card extends ActionBarActivity {
 		height_Screen = metrics.heightPixels;
 		System.out.println("width height" + width_screen + height_Screen);
 	}
-
+/*
 	private void setSizeOFView(int width, int height) {
 		Card_img.setLayoutParams(new LayoutParams(width, height));
 	}
-
+*/
 }

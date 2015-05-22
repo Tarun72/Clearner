@@ -28,20 +28,18 @@ public class Code extends Fragment {
 	private String Program;
     private TextView CodeShow;
 	public Code(String program) {
-		// TODO Auto-generated constructor stub
 		this.Program = program;
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		View root = inflater.inflate(R.layout.fragment_programe_show, container, false);
 		return root;
 	}
+	
 	@Override
 	public void onStart() {
-		// TODO Auto-generated method stub
 		super.onStart();
 	CodeShow = (TextView) getView().findViewById(R.id.programShowTextView);
 	PrettifyHighlighter highlighter = new PrettifyHighlighter();
@@ -88,7 +86,6 @@ public class Code extends Fragment {
 		
 		@Override
 		public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-			// TODO Auto-generated method stub
 			 MenuInflater inflater = mode.getMenuInflater();
 		     inflater.inflate(R.menu.custom_menu, menu);
 		
@@ -97,7 +94,6 @@ public class Code extends Fragment {
 		
 		@Override
 		public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-			// TODO Auto-generated method stub
 			int startSelections=CodeShow.getSelectionStart();
 			int endSelections=CodeShow.getSelectionEnd();
 			String selectedText = CodeShow.getText().toString().substring(startSelections, endSelections);

@@ -37,7 +37,7 @@
                     android:orientation="horizontal" >
 
                     <Button
-                        android:id="@+id/theo"
+                        android:id="@+id/theo_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"
@@ -54,7 +54,7 @@
                     android:orientation="horizontal" >
 
                     <Button
-                        android:id="@+id/key_bttn"
+                        android:id="@+id/key_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"
@@ -80,7 +80,7 @@
                     android:orientation="horizontal" >
 
                     <Button
-                        android:id="@+id/prog_bttn"
+                        android:id="@+id/prog_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"
@@ -96,7 +96,7 @@
                     android:orientation="horizontal" >
 
                     <Button
-                        android:id="@+id/test_bttn"
+                        android:id="@+id/test_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"
@@ -123,7 +123,7 @@
                     android:orientation="horizontal" >
 
                     <Button
-                        android:id="@+id/question_apn_bttn"
+                        android:id="@+id/question_apn_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"
@@ -140,7 +140,7 @@
                     android:orientation="horizontal" >
 
                     <Button
-                        android:id="@+id/com_bttn"
+                        android:id="@+id/com_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"
@@ -166,7 +166,7 @@
                     android:orientation="horizontal" >
 
                     <Button
-                        android:id="@+id/Instute_apn_bttn"
+                        android:id="@+id/instute_apn_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"
@@ -183,7 +183,7 @@
                     android:orientation="horizontal" >
 
                     <Button
-                        android:id="@+id/Proj_bttn"
+                        android:id="@+id/proj_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"

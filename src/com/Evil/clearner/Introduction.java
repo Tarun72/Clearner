@@ -15,7 +15,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,20 +34,17 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
-public class Introduction extends ActionBarActivity implements
+public class Introduction extends Clearner implements
 		NavigationDrawerFragment.NavigationDrawerCallbacks, OnClickListener {
 
-	private Button B1, B2, B3, B4, B5, B6, B7, B8;
-	private Intent df;
+	private Button theo_btn, key_btn, prog_btn, test_btn, question_apn_btn, com_btn, instute_apn_btn, proj_btn;
 	
 	public static boolean showPDF = false;
+	
 	/** The view to show the ad. */
 	private AdView AdView;
 	
-	private LinearLayout linearLayout_1, linearLayout_2, linearLayout_3, linearLayout_4;
 
-	/* Your ad unit id. Replace with your actual ad unit id. */
-	private static final String AD_UNIT_ID = "ca-app-pub-3748442571221151/1824903024";
 	/**
 	 * Fragment managing the behaviors, interactions and presentation of the
 	 * navigation drawer.
@@ -62,19 +58,13 @@ public class Introduction extends ActionBarActivity implements
 	private CharSequence mTitle;
 	
 	// Get tracker.
-    Tracker t ;
+	private  Tracker t ;
 
-//    Animation animation,animation2;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_introduction);
-	/*	animation2 = new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
-		animation2.setDuration(1000); // duration - half a second
-		animation2.setInterpolator(new LinearInterpolator()); // do not alter animation rate
-		animation2.setRepeatCount(Animation.INFINITE); // Repeat animation infinitely
-		animation2.setRepeatMode(Animation.REVERSE); // Reverse animation at the end so the button will fade back in
-	*/ 
+
 		mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.navigation_drawer);
 		mTitle = getTitle();
@@ -82,13 +72,14 @@ public class Introduction extends ActionBarActivity implements
 		// Set up the drawer.
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
 				(DrawerLayout) findViewById(R.id.drawer_layout));
+		
 		t = ((ClearnerApplication)Introduction.this.getApplication()).getTracker(
 		        TrackerName.APP_TRACKER);
   
 		// Set screen name.
         // Where path is a String representing the screen name.
         t.setScreenName("Introduction");// This event will also be sent with &cd=Home%20Screen.
-     // Send a screen view.
+        // Send a screen view.
         t.send(new HitBuilders.AppViewBuilder().build());
 	}
 
@@ -96,26 +87,22 @@ public class Introduction extends ActionBarActivity implements
 	public void onNavigationDrawerItemSelected(int position) {
 		// update the main content by replacing fragments
 		if (position == 0) {
-			Intent df = new Intent(Introduction.this, Resource.class);
-			startActivity(df);
+			Clearner.openActivity(Introduction.this, Resource.class);
 			this.finish();
 		}
 		if (position == 1) {
-			Intent df = new Intent(Introduction.this, ViewData.class);
-			startActivity(df);
+			Clearner.openActivity(Introduction.this, ViewData.class);
 			this.finish();
 		}
 
 		if (position == 2) {
-			Intent df = new Intent(Introduction.this, MainActivity.class);
-			startActivity(df);
+			Clearner.openActivity(Introduction.this, MainActivity.class);
 			this.finish();
 		}
 
 		
 		if (position == 3) {
-			Boolean yo = copyFile(getApplicationContext(), "CodeConvention.pdf",  "/data/data/com.Evil.clearner/clearner/CodeConvention.pdf");
-			System.out.println("MainActivity.onCreate() file is save "+yo);
+			copyFile(getApplicationContext(), "CodeConvention.pdf",  "/data/data/com.Evil.clearner/clearner/CodeConvention.pdf");
 			Intent intent = new Intent(this, PdfViewer.class);
 		    intent.putExtra(PdfViewerActivity.EXTRA_PDFFILENAME, "/data/data/com.Evil.clearner/clearner/CodeConvention.pdf");
 		    startActivity(intent);
@@ -235,122 +222,42 @@ public class Introduction extends ActionBarActivity implements
 
 	@Override
 	public void onStart() {
-		// TODO Auto-generated method stub
 		super.onStart();
-		setTitle("Introduction");
-		B1 = (Button) findViewById(R.id.theo);
-		B1.setOnClickListener(this);
-//		B1.setAnimation(animation2);
-		B2 = (Button) findViewById(R.id.key_bttn);
-		B2.setOnClickListener(this);
-//		B2.setAnimation(animation2);
-		B3 = (Button) findViewById(R.id.prog_bttn);
-		B3.setOnClickListener(this);
-//		B3.setAnimation(animation2);
-		B4 = (Button) findViewById(R.id.test_bttn);
-		B4.setOnClickListener(this);
-//		B4.setAnimation(animation2);
-		B5 = (Button) findViewById(R.id.question_apn_bttn);
-		B5.setOnClickListener(this);
-//		B5.setAnimation(animation2);
-		B6 = (Button) findViewById(R.id.com_bttn);
-		B6.setOnClickListener(this);
-//		B6.setAnimation(animation2);
-		B7 = (Button) findViewById(R.id.Instute_apn_bttn);
-		B7.setOnClickListener(this);
-//		B7.setAnimation(animation2);
-		B8 = (Button) findViewById(R.id.Proj_bttn);
-		B8.setOnClickListener(this);
-/*//		B8.setAnimation(animation2);
-		animation =AnimationUtils.loadAnimation(getApplicationContext(), R.anim.abc_slide_in_bottom);
-		animation.setDuration(3000);*/
-
-		/*
-		linearLayout_1 = (LinearLayout) findViewById(R.id.Linearlayout_1);
-		linearLayout_1.setAnimation(animation);
-		
-		linearLayout_2 = (LinearLayout) findViewById(R.id.Linearlayout_2);
-		linearLayout_2.setAnimation(animation);
-
-		linearLayout_3 = (LinearLayout) findViewById(R.id.Linearlayout_3);
-		linearLayout_3.setAnimation(animation);
-
-		linearLayout_4 = (LinearLayout) findViewById(R.id.Linearlayout_4);
-		linearLayout_4.setAnimation(animation);
-*/	
-		// Create an ad.
-	    AdView = new AdView(this);
-	    AdView.setAdSize(AdSize.BANNER);
-	    AdView.setAdUnitId(AD_UNIT_ID);
-
-	    // Add the AdView to the view hierarchy. The view will have no size
-	    // until the ad is loaded.
-	    LinearLayout layout = (LinearLayout) findViewById(R.id.LineraLyout);
-	    layout.addView(AdView);
-
-	    // Create an ad request. Check logcat output for the hashed device ID to
-	    // get test ads on a physical device.
-	    AdRequest adRequest = new AdRequest.Builder()
-	        .build();
-
-	    // Start loading the ad in the background.
-	    AdView.loadAd(adRequest);
-
-
+		init();
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.theo:
-//			B1.setAnimation(null);
-			Intent i = new Intent(this, Theory.class);
-			startActivity(i);
+		case R.id.theo_btn:
+			Clearner.openActivity(this, Theory.class);
 			break;
-		case R.id.prog_bttn:
-//			B3.setAnimation(null);
-			Intent df = new Intent(Introduction.this, ProgramList.class);
-			startActivity(df);
+		case R.id.prog_btn:
+			Clearner.openActivity(this, ProgramList.class);
 			break;
-		case R.id.key_bttn:
-//			B2.setAnimation(null);
-			Intent ia = new Intent(this, KeywordOption.class);
-			startActivity(ia);
+		case R.id.key_btn:
+			Clearner.openActivity(this, KeywordOption.class);
 			break;
-		case R.id.test_bttn:
-//			B4.setAnimation(null);
-			Intent start = new Intent(this, Nik.class);
-			startActivity(start);
+		case R.id.test_btn:
+			Clearner.openActivity(this, Nik.class);
 			break;
-		case R.id.question_apn_bttn:
-//			B5.setAnimation(null);
-			Intent d = new Intent(Introduction.this, TestUrSkillActivity.class);
-			startActivity(d);
-
+		case R.id.question_apn_btn:
+			Clearner.openActivity(this, TestUrSkillActivity.class);
 			break;
-		case R.id.com_bttn:
-//			B6.setAnimation(null);
+		case R.id.com_btn:
+			Clearner.openActivity(this, YouTubeActivity.class);
 			Toast.makeText(getApplicationContext(), " This is great tutorials,\n published on youtube by great Teachers\n Thanks them", Toast.LENGTH_LONG).show();
-			Intent tar = new Intent(Introduction.this, YouTubeActivity.class);
-			startActivity(tar);
-
 			break;
-		case R.id.Proj_bttn:
-//			B8.setAnimation(null);
-			Intent der = new Intent(Introduction.this, ProjectActivity.class);
-			startActivity(der);
+		case R.id.proj_btn:
+			Clearner.openActivity(this, ProjectActivity.class);
 			break;
-		case R.id.Instute_apn_bttn:
-
-//			B7.setAnimation(null);
-			Intent derr = new Intent(Introduction.this, MapActivity.class);
-			startActivity(derr);
+		case R.id.instute_apn_btn:
+			Clearner.openActivity(this, MapActivity.class);
 			break;
 		}
 	}
 
-	private boolean copyFile(Context context, String sourceFileName, String destFileName)
-	{
+	private boolean copyFile(Context context, String sourceFileName, String destFileName){
 	    AssetManager assetManager = context.getAssets();
 
 	    File destFile = new File(destFileName);
@@ -384,7 +291,8 @@ public class Introduction extends ActionBarActivity implements
 	    }
 	    return false;
 	}
-private void share(){
+
+	private void share(){
 	   // Launching Share Intent 
     String share = "Check out " + getResources().getString(R.string.app_name) + " " + getResources().getString(R.string.market) + " on the Play Store";
     Intent sendIntent = new Intent();
@@ -421,6 +329,54 @@ private void share(){
 		AdView.destroy();
 
 		super.onDestroy();
+	}
+	
+	@Override
+	public void init() {
+		super.init();
+		setTitle("Introduction");
+	
+		theo_btn = (Button) findViewById(R.id.theo_btn);
+		theo_btn.setOnClickListener(this);
+		
+		key_btn = (Button) findViewById(R.id.key_btn);
+		key_btn.setOnClickListener(this);
+		
+		prog_btn = (Button) findViewById(R.id.prog_btn);
+		prog_btn.setOnClickListener(this);
+		
+		test_btn = (Button) findViewById(R.id.test_btn);
+		test_btn.setOnClickListener(this);
+		
+		question_apn_btn = (Button) findViewById(R.id.question_apn_btn);
+		question_apn_btn.setOnClickListener(this);
+		
+		com_btn = (Button) findViewById(R.id.com_btn);
+		com_btn.setOnClickListener(this);
+		
+		instute_apn_btn = (Button) findViewById(R.id.instute_apn_btn);
+		instute_apn_btn.setOnClickListener(this);
+		
+		proj_btn = (Button) findViewById(R.id.proj_btn);
+		proj_btn.setOnClickListener(this);
+
+		// Create an ad.
+	    AdView = new AdView(this);
+	    AdView.setAdSize(AdSize.BANNER);
+	    AdView.setAdUnitId(Clearner.AD_UNIT_ID);
+
+	    // Add the AdView to the view hierarchy. The view will have no size
+	    // until the ad is loaded.
+	    LinearLayout layout = (LinearLayout) findViewById(R.id.LineraLyout);
+	    layout.addView(AdView);
+
+	    // Create an ad request. Check logcat output for the hashed device ID to
+	    // get test ads on a physical device.
+	    AdRequest adRequest = new AdRequest.Builder()
+	        .build();
+
+	    // Start loading the ad in the background.
+	    AdView.loadAd(adRequest);
 	}
 }
 

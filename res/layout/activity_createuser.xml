@@ -97,7 +97,7 @@
                         android:gravity="center"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:layout_below="@+id/textView_signup_link"
+                        android:layout_below="@+id/signup_link_txtView"
                         android:text="@string/author"
                         android:textAppearance="?android:attr/textAppearanceMedium" />
                     
@@ -112,7 +112,7 @@
                         android:textAppearance="?android:attr/textAppearanceMedium" />
                  
                  <TextView
-                        android:id="@+id/textView_signup_link"
+                        android:id="@+id/signup_link_txtView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"

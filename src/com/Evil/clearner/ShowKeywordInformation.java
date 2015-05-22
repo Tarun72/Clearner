@@ -61,7 +61,7 @@ public class ShowKeywordInformation extends ActionBarActivity {
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 	    fragmentTransaction.add(R.id.fragment_container, fragment);
-        fragmentTransaction.addToBackStack(null);
+//        fragmentTransaction.addToBackStack(null);
 		fragmentTransaction.commit();
 	}
 

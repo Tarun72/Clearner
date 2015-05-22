@@ -6,12 +6,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import net.sf.andpdf.pdfviewer.PdfViewerActivity;
-
-import com.Evil.clearner.ClearnerApplication.TrackerName;
-import com.PDF.clearner.PdfViewer;
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -35,11 +29,16 @@ import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import com.Evil.clearner.ClearnerApplication.TrackerName;
+import com.PDF.clearner.PdfViewer;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 public class Theory extends ActionBarActivity implements
 		NavigationDrawerFragment.NavigationDrawerCallbacks, OnItemClickListener {
-	ListView list;
+	private ListView list;
+
 	private String[] Something = { "History", "Why to use C?",
 			"Environment Setup", "Programming Basics", "Basic Bulidung Blocks",
 			"The printf and scanf", "Data Types", "Token", "Variables",
@@ -48,25 +47,7 @@ public class Theory extends ActionBarActivity implements
 			"Inputs and Outputs", "typedef", "preprocessors", "Type Casting",
 			"Memory management", "More tutorials" };
 
-	private String[] topic = { "Introduction",
-			"Constants, Variables and Keywords",
-			"Rules for constructing constants",
-			"Rules for constructing variable names", "Data Types",
-			"Understanding the program in C", "Instructions in C",
-			"The if statement", "The if-else statement",
-			"The Conditional operators", "The switch statement",
-			"The goto keyword", "Loops", "while statement",
-			"do-while statement", "for statement", "The continue statement",
-			"The break statement", "Functions",
-			"Function declaration and Prototype", "Prototype", "Pointers",
-			"1-Dimensional Array", "2-Dimensional Array", "Strings in C",
-			"String Handling Functions", "sscanf and sprintf functions",
-			"Storage Classes in C", "Structures in C", "The C Preprocessor",
-			"C File I/O and Binary File I/O", "Typecasting",
-			"Command line arguments", "Linked Lists", "Recursion",
-			"Variable argument lists", "Binary Trees", "C Programming Examples" };
-
-	Integer[] imageId = { R.drawable.ic_launcher,
+		Integer[] imageId = { R.drawable.ic_launcher,
 			R.drawable.ic_launcher,
 			R.drawable.ic_launcher,
 			R.drawable.ic_launcher,
@@ -118,7 +99,7 @@ public class Theory extends ActionBarActivity implements
 	 * {@link #restoreActionBar()}.
 	 */
 	private CharSequence mTitle;
-	Tracker t;
+	private Tracker t;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -143,27 +124,22 @@ public class Theory extends ActionBarActivity implements
 		// Set up the drawer.
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
 				(DrawerLayout) findViewById(R.id.drawer_layout));
-	/*	Toast.makeText(getApplicationContext(), "String" + Something.length,
-				Toast.LENGTH_LONG).show();*/
 	}
 
 	@Override
 	public void onNavigationDrawerItemSelected(int position) {
 		// update the main content by replacing fragments
 		if (position == 0) {
-			Intent df = new Intent(Theory.this, Resource.class);
-			startActivity(df);
+			Clearner.openActivity(Theory.this, Resource.class);
 			this.finish();
 		}
 		if (position == 1) {
-			Intent df = new Intent(Theory.this, ViewData.class);
-			startActivity(df);
+			Clearner.openActivity(Theory.this, ViewData.class);
 			this.finish();
 		}
 
 		if (position == 2) {
-			Intent df = new Intent(Theory.this, MainActivity.class);
-			startActivity(df);
+			Clearner.openActivity(Theory.this, MainActivity.class);
 			this.finish();
 		}
 
@@ -281,51 +257,17 @@ public class Theory extends ActionBarActivity implements
 
 	@Override
 	protected void onStart() {
-		// TODO Auto-generated method stub
 		super.onStart();
-		Customlist adapter = new Customlist(Theory.this, Something, imageId);
-		list = (ListView) findViewById(R.id.list);
-		list.setAdapter(adapter);
-		list.setOnItemClickListener(this);
-		AnimationSet set = new AnimationSet(true);
-
-		Animation animation = new AlphaAnimation(0.0f, 1.0f);
-		animation.setDuration(300);
-		set.addAnimation(animation);
-
-		animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
-				Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
-				-1.0f, Animation.RELATIVE_TO_SELF, 0.0f);
-		animation.setDuration(100);
-		set.addAnimation(animation);
-
-		LayoutAnimationController controller = new LayoutAnimationController(
-				set, 0.5f);
-		ListView listView = list;
-		listView.setLayoutAnimation(controller);
-
+		init();
 	}
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		/*
-		 * Intent i=new Intent(getApplicationContext(),BrowserActivity.class);
-		 * i.putExtra("position", position); startActivity(i);
-		 */
-		/*
-		 * String item= top ic[position];
-		 * System.out.println(""+topic[position]); Intent in= new
-		 * Intent(this,theoryShow.class); in.putExtra("topic", position);
-		 * in.putExtra("database", "C_Theory_Table");
-		 * //in.putExtra("currentIntent", "CProgramList.class");
-		 */
 		String item = Something[position];
 		Intent intent = new Intent(this, ShowTheory.class);
 		intent.putExtra("topic", position);
 		intent.putExtra("database", "C_THEORY_NEW");
-
-//		Theory.this.finish(); // finish this activity
 		startActivity(intent);
 	}
 	private boolean copyFile(Context context, String sourceFileName, String destFileName)
@@ -363,6 +305,29 @@ public class Theory extends ActionBarActivity implements
 	    }
 	    return false;
 	}
+	
+	private void init(){
+		Customlist adapter = new Customlist(Theory.this, Something, imageId);
+		list = (ListView) findViewById(R.id.list);
+		list.setAdapter(adapter);
+		list.setOnItemClickListener(this);
+		AnimationSet set = new AnimationSet(true);
 
+		Animation animation = new AlphaAnimation(0.0f, 1.0f);
+		animation.setDuration(300);
+		set.addAnimation(animation);
 
+		animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
+				Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
+				-1.0f, Animation.RELATIVE_TO_SELF, 0.0f);
+		animation.setDuration(100);
+		set.addAnimation(animation);
+
+		LayoutAnimationController controller = new LayoutAnimationController(
+				set, 0.5f);
+		ListView listView = list;
+		listView.setLayoutAnimation(controller);
+
+	
+	}
 }

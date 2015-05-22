@@ -1,6 +1,5 @@
 package com.Evil.clearner;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,11 +14,10 @@ import android.widget.ListView;
 
 import com.database.clearner.ProgramDatabase;
 
-public class ProgramList extends Activity implements OnItemClickListener {
+public class ProgramList extends Clearner implements OnItemClickListener {
 
 private ProgramDatabase PD;
 private ListView lists;
-private String Programes;
 private String[] list= {
 		"Program to add two numbers using function (Pass by value method).",
         "Program to add two numbers using function (Pass by Reference).",
@@ -82,56 +80,13 @@ private Integer[] imageres = {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.fragment_theory);
-		PD = new ProgramDatabase(ProgramList.this);
-		setTitle(getResources().getString(R.string.pro_name));
-/*		Customlist customlist = new Customlist(ProgramList.this, list, imageres);
-		setListAdapter(customlist);
-
-		AnimationSet set = new AnimationSet(true);
-		  
-	        Animation animation = new AlphaAnimation(0.0f, 1.0f); 
-	        animation.setDuration(700);
-	        set.addAnimation(animation);
-	 
-	        animation = new TranslateAnimation(
-	            Animation.RELATIVE_TO_SELF, 0.0f,Animation.RELATIVE_TO_SELF, 0.0f,
-	            Animation.RELATIVE_TO_SELF, -1.0f,Animation.RELATIVE_TO_SELF, 0.0f
-	        );
-	        animation.setDuration(100);
-	        set.addAnimation(animation);
-	 
-	        LayoutAnimationController controller = new LayoutAnimationController(set, 0.5f);
-	        ListView listView = getListView();        
-	        listView.setLayoutAnimation(controller);
-*/
-		Customlist adapter = new Customlist(ProgramList.this, list, imageres);
-		lists = (ListView) findViewById(R.id.list);
-		lists.setAdapter(adapter);
-		lists.setOnItemClickListener(this);
-		AnimationSet set = new AnimationSet(true);
-
-		Animation animation = new AlphaAnimation(0.0f, 1.0f);
-		animation.setDuration(300);
-		set.addAnimation(animation);
-
-		animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
-				Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
-				-1.0f, Animation.RELATIVE_TO_SELF, 0.0f);
-		animation.setDuration(100);
-		set.addAnimation(animation);
-
-		LayoutAnimationController controller = new LayoutAnimationController(
-				set, 0.5f);
-		ListView listView = lists;
-		listView.setLayoutAnimation(controller);
-
+		init();
 	}
 
 
 	@Override
 		protected void onStart() {
 			super.onStart();
-
 		}
 
 
@@ -143,8 +98,36 @@ private Integer[] imageres = {
 		Intent in= new Intent(this, ProgrameShow.class);
 		in.putExtra("ID", position);
 		in.putExtra("database", "C_Programs_Table");
-		//in.putExtra("currentIntent", "CProgramList.class");
-		//ProgramList.this.finish(); // finish this activity
 		startActivity(in);			
+	}
+	
+	@Override
+		public void init() {
+			super.init();
+			PD = new ProgramDatabase(ProgramList.this);
+			setTitle(getResources().getString(R.string.pro_name));
+
+			Customlist adapter = new Customlist(ProgramList.this, list, imageres);
+			lists = (ListView) findViewById(R.id.list);
+			lists.setAdapter(adapter);
+			lists.setOnItemClickListener(this);
+			AnimationSet set = new AnimationSet(true);
+
+			Animation animation = new AlphaAnimation(0.0f, 1.0f);
+			animation.setDuration(300);
+			set.addAnimation(animation);
+
+			animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
+					Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
+					-1.0f, Animation.RELATIVE_TO_SELF, 0.0f);
+			animation.setDuration(100);
+			set.addAnimation(animation);
+
+			LayoutAnimationController controller = new LayoutAnimationController(
+					set, 0.5f);
+			ListView listView = lists;
+			listView.setLayoutAnimation(controller);
+
+
 	}
 }

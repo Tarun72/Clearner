@@ -109,25 +109,7 @@ public class Keywords extends Activity implements OnItemClickListener {
         if(bundle != null){
         	needtoshow = bundle.getString("needtoshow");
         }
-	
-    /*    setListAdapter(customlist);
-		  AnimationSet set = new AnimationSet(true);
-		  
-	        Animation animation = new AlphaAnimation(0.0f, 1.0f); 
-	        animation.setDuration(700);
-	        set.addAnimation(animation);
-	 
-	        animation = new TranslateAnimation(
-	            Animation.RELATIVE_TO_SELF, 0.0f,Animation.RELATIVE_TO_SELF, 0.0f,
-	            Animation.RELATIVE_TO_SELF, -1.0f,Animation.RELATIVE_TO_SELF, 0.0f
-	        );
-	        animation.setDuration(100);
-	        set.addAnimation(animation);
-	 
-	        LayoutAnimationController controller = new LayoutAnimationController(set, 0.5f);
-	        ListView listView = getListView();        
-	        listView.setLayoutAnimation(controller);
-	*/}
+	}
 
 @Override
 protected void onStart() {

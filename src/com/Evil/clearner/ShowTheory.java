@@ -346,19 +346,18 @@ public class ShowTheory extends ActionBarActivity implements OnGestureListener, 
 
 	@Override
 	public void onTabReselected(Tab arg0, FragmentTransaction arg1) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void onTabSelected(Tab arg0, FragmentTransaction arg1) {
-		// TODO Auto-generated method stub
-		
+	public void onTabSelected(Tab tab, FragmentTransaction arg1) {
+		  // on tab selected
+        // show respected fragment view
+        viewPager.setCurrentItem(tab.getPosition());		
 	}
 
 	@Override
 	public void onTabUnselected(Tab arg0, FragmentTransaction arg1) {
-		// TODO Auto-generated method stub
 		
 	}
 }
